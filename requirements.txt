@@ -1,9 +1,8 @@
-streamlit>=1.36.0
-requests>=2.31.0
-beautifulsoup4>=4.12.0
-pandas>=2.0.0
-openpyxl>=3.1.0
-lxml>=5.0.0
-python-dotenv>=1.0.0
-apscheduler>=3.10.0
-weasyprint>=61.0
+streamlit
+chromadb
+sentence-transformers
+pypdf
+rank-bm25
+numpy
+groq
+pysqlite3-binary
