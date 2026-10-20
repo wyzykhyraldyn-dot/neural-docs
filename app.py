@@ -1,3 +1,7 @@
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 import streamlit as st
 import chromadb
 from sentence_transformers import SentenceTransformer
@@ -62,7 +66,6 @@ def split_text_enhanced(text, chunk_size=1200, overlap=150):
 with st.sidebar:
     st.markdown("<h3 style='color: #e2e8f0; font-size: 1.2rem; margin-bottom: 20px;'>⚙️ لوحة التحكم</h3>", unsafe_allow_html=True)
     
-    # دليل الاستخدام
     with st.expander("📖 دليل الاستخدام"):
         st.markdown("""
         1. اضغط على **'حمل ملفك PDF'** واختر الملف الذي تريد تحليله.
@@ -73,7 +76,6 @@ with st.sidebar:
 
     uploaded_files = st.file_uploader("حمل ملفك PDF", type="pdf", accept_multiple_files=True)
     
-    # استخدام st.empty() لجعل الزر يختفي بعد الضغط
     button_placeholder = st.empty()
     
     if button_placeholder.button("🚀 تحليل ملفك"):
@@ -106,7 +108,6 @@ with st.sidebar:
                     st.session_state.metadatas = all_metadata
                     st.session_state.bm25 = BM25Okapi([doc.lower().split() for doc in all_chunks])
                 
-                # إخفاء الزر وإظهار رسالة النجاح
                 button_placeholder.empty()
                 st.success(f"✅ النظام جاهز! تم تحليل {len(all_chunks)} مقطع.")
             else:
